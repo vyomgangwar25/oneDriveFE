@@ -1,4 +1,30 @@
+import React from 'react';
+import { useState } from 'react';
 const Login = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleSubmit = async(e) => {
+        e.preventDefault();
+        const payload = {
+            email: email,
+            password: password
+        };
+        console.log(payload);
+    try {
+        const response =  await fetch('http://localhost:8080/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
+        const data = response.json();
+        console.log(data);
+    } catch (error) {
+        console.error('Login error:', error);
+    }
+    }
     return (
         <main className="min-h-screen overflow-hidden bg-[#f5f7f2] text-[#17251d]">
             <div className="relative mx-auto flex min-h-screen max-w-7xl items-center justify-center px-5 py-10 sm:px-10 lg:justify-between lg:px-16">
@@ -39,17 +65,17 @@ const Login = () => {
                         <p className="mt-2 text-sm leading-6 text-[#718077]">Access your files from wherever you are.</p>
                     </div>
 
-                    <form className="space-y-5">
+                    <form className="space-y-5" onSubmit={handleSubmit}>
                         <div>
                             <label className="mb-2 block text-sm font-bold text-[#30453a]" htmlFor="email">Email address</label>
-                            <input className="w-full rounded-xl border border-[#dce5dd] bg-[#f9fbf8] px-4 py-3.5 text-[#173a2d] outline-none transition placeholder:text-[#a3b0a7] focus:border-[#1d6b4f] focus:ring-4 focus:ring-[#1d6b4f]/10" id="email" name="email" placeholder="you@example.com" type="email" />
+                            <input className="w-full rounded-xl border border-[#dce5dd] bg-[#f9fbf8] px-4 py-3.5 text-[#173a2d] outline-none transition placeholder:text-[#a3b0a7] focus:border-[#1d6b4f] focus:ring-4 focus:ring-[#1d6b4f]/10" id="email" name="email" placeholder="you@example.com" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                         </div>
                         <div>
                             <div className="mb-2 flex items-center justify-between gap-3">
                                 <label className="block text-sm font-bold text-[#30453a]" htmlFor="password">Password</label>
                                 <a className="text-xs font-bold text-[#1d6b4f] hover:underline" href="/forgot-password">Forgot password?</a>
                             </div>
-                            <input className="w-full rounded-xl border border-[#dce5dd] bg-[#f9fbf8] px-4 py-3.5 text-[#173a2d] outline-none transition placeholder:text-[#a3b0a7] focus:border-[#1d6b4f] focus:ring-4 focus:ring-[#1d6b4f]/10" id="password" name="password" placeholder="Enter your password" type="password" />
+                            <input className="w-full rounded-xl border border-[#dce5dd] bg-[#f9fbf8] px-4 py-3.5 text-[#173a2d] outline-none transition placeholder:text-[#a3b0a7] focus:border-[#1d6b4f] focus:ring-4 focus:ring-[#1d6b4f]/10" id="password" name="password" placeholder="Enter your password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                         </div>
                         <button className="w-full rounded-xl bg-[#1d6b4f] px-4 py-3.5 font-bold text-white shadow-lg shadow-[#1d6b4f]/20 transition hover:bg-[#15543d] focus:outline-none focus:ring-4 focus:ring-[#1d6b4f]/20" type="submit">Log in</button>
                     </form>
