@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import { API_BASE_URL } from '../../constants/api';
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -12,15 +13,17 @@ const Login = () => {
         };
         console.log(payload);
     try {
-        const response =  await fetch('http://localhost:8080/auth/login', {
+        const response =  await fetch(`${API_BASE_URL}/auth/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(payload)
         });
-        const data = response.json();
+       const data = await response.json();
         console.log(data);
+        localStorage.setItem("accessToken", data.accessToken);
+        localStorage.setItem("refreshToken", data.refreshToken);
     } catch (error) {
         console.error('Login error:', error);
     }

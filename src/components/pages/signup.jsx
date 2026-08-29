@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { API_BASE_URL } from "../../constants/api";
 const Signup = () => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
@@ -13,7 +14,7 @@ const Signup = () => {
     };
     console.log(payload);
         try {
-        const response = await fetch("http://localhost:8080/auth/signup", {
+        const response = await fetch(`${API_BASE_URL}/auth/signup`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
