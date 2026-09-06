@@ -3,9 +3,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from './components/pages/login'
 import Signup from './components/pages/signup';
 import Dashboard from './components/pages/dashboard';
+import { AuthProvider } from "./context/AuthContext";
 
 function App() {
     return (
+        <AuthProvider>
         <BrowserRouter>
 
             <Routes>
@@ -17,6 +19,7 @@ function App() {
             </Routes>
 
         </BrowserRouter>
+        </AuthProvider>
     );
 }
 

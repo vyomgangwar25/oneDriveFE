@@ -11,7 +11,9 @@ const Dashboard = () => {
                 <Topbar />
                 <section className="px-5 py-7 sm:px-8 sm:py-9">
                     <div className="flex flex-col gap-5 rounded-3xl bg-[#dcecdf] p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
-                        <div><p className="text-sm font-bold uppercase tracking-widest text-[#d07939]">Your space</p><h2 className="mt-2 text-3xl font-black tracking-tight text-[#173a2d]">Everything in its place.</h2><p className="mt-2 text-sm text-[#607167]">Keep your files organized and easy to find.</p></div>
+                        <div><p className="text-sm font-bold uppercase tracking-widest text-[#d07939]">Your space</p>
+                        <h2 className="mt-2 text-3xl font-black tracking-tight text-[#173a2d]">Everything in its place.</h2>
+                        <p className="mt-2 text-sm text-[#607167]">Keep your files organized and easy to find.</p></div>
                         <UploadButton />
                     </div>
                     <div className="mt-9 flex items-end justify-between"><div><p className="text-sm font-semibold text-[#8b9990]">Your collection</p><h2 className="mt-1 text-2xl font-black tracking-tight">Recent files</h2></div><button className="text-sm font-bold text-[#1d6b4f] hover:underline" type="button">View all</button></div>
